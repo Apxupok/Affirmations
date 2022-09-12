@@ -76,13 +76,15 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier){
                 modifier = Modifier.padding(16.dp),
                 style = MaterialTheme.typography.h6
             )
+            Text(text = affirmation.newString)
+
         }
     }
 }
 @Preview
 @Composable
 private fun AffirmationCardPreview() {
-    AffirmationCard(Affirmation(R.string.affirmation1, R.drawable.image1))
+    AffirmationCard(Affirmation(R.string.affirmation1, R.drawable.image1,"String"))
 }
 
 @Composable
