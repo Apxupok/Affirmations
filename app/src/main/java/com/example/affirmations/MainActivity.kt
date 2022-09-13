@@ -18,10 +18,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
@@ -29,6 +26,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -39,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.example.affirmations.model.Affirmation
 import com.example.affirmations.ui.theme.AffirmationsTheme
 import com.example.affirmations.data.Datasource
+import com.example.affirmations.model.MyClass
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +59,7 @@ fun AffirmationApp() {
     }
 }
 @Composable
-fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier){
+fun AffirmationCard(affirmation: Affirmation,myClass: MyClass, modifier: Modifier = Modifier){
     Card(modifier = modifier.padding(8.dp), elevation = 4.dp) {
         Column() {
             Image(
@@ -76,23 +75,29 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier){
                 modifier = Modifier.padding(16.dp),
                 style = MaterialTheme.typography.h6
             )
-            Text(text = affirmation.newString)
-
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
+                Text(
+                    text = myClass.myValue.toString(),
+                    modifier = Modifier.padding(4.dp),
+                    style = MaterialTheme.typography.h6
+                )
+            }
         }
     }
 }
 @Preview
 @Composable
 private fun AffirmationCardPreview() {
-    AffirmationCard(Affirmation(R.string.affirmation1, R.drawable.image1,"String"))
+    AffirmationCard(Affirmation(R.string.affirmation1, R.drawable.image1, "String"), MyClass(10))
 }
 
 @Composable
 private fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
     LazyColumn {
         items(affirmationList){ affirmation ->
-            AffirmationCard(affirmation)
+            AffirmationCard(affirmation, Datasource().myFun()[affirmationList.lastIndexOf(affirmation)] )
         }
+
     }
 }
 

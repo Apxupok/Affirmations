@@ -16,6 +16,7 @@
 package com.example.affirmations.data
 import com.example.affirmations.R
 import com.example.affirmations.model.Affirmation
+import com.example.affirmations.model.MyClass
 
 /**
  * [Datasource] generates a list of [Affirmation]
@@ -34,6 +35,21 @@ class Datasource() {
             Affirmation(R.string.affirmation9, R.drawable.image9,"new9 String"),
             Affirmation(R.string.affirmation10, R.drawable.image10,"new10 String"),
             Affirmation(R.string.affirmation11, R.drawable.image11,"new11 String")
+        )
+    }
+    fun myFun(): List<MyClass>{
+        return listOf<MyClass>(
+            MyClass(10),
+            MyClass(9),
+            MyClass(8),
+            MyClass(7),
+            MyClass(6),
+            MyClass(5),
+            MyClass(4),
+            MyClass(3),
+            MyClass(2),
+            MyClass(1),
+            MyClass(0),
         )
     }
 }

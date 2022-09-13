@@ -8,3 +8,6 @@ data class Affirmation(
     @DrawableRes val imageResourceId: Int,
     val newString: String
 )
+data class MyClass(
+    val myValue: Int
+)
